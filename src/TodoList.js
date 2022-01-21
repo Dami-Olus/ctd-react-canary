@@ -6,8 +6,8 @@ function TodoList({ todoList, onRemoveTodo }) {
   // console.log(todos)
   return (
     <ul>
-      {todoList.map((list) => (
-        <TodoListItem key={list.id} item={list} todo={list.title} onRemoveTodo={onRemoveTodo} />
+      {todoList.map((records) => (
+        <TodoListItem key={records.id} item={records} todo={records.fields.Title} onRemoveTodo={onRemoveTodo} />
       ))}
     </ul>
   );
