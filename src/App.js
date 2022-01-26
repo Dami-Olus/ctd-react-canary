@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const airtableApiBaseId = process.env.REACT_APP_AIRTABLE_BASE_ID;
 const airtableApiKey = process.env.REACT_APP_AIRTABLE_API_KEY;
@@ -16,7 +17,7 @@ function App() {
     fetch(`https://api.airtable.com/v0/${airtableApiBaseId}/Default`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${airtableApiKey}`,
+        Authorization: `Bearer ${airtableApiKey}`,
         // Authorization: "Bearer keychO6BLnDfKm60E",
       },
     })
@@ -46,16 +47,20 @@ function App() {
   };
 
   return (
-    <>
-      <h1 style={{ color: "green" }}>Todo List</h1>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" exact element={<><h1 style={{ color: "green" }}>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       {/* <p>{newTodo}</p> */}
       {isLoading ? (
         <p>Loading</p>
       ) : (
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-    </>
+      )}</>} />
+      
+      
+      </Routes>
+    </BrowserRouter>
   );
 }
 
